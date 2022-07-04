@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+      <h5 class="my-0 mr-md-auto font-weight-normal">Weather App</h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#info">Information</a>
+        <a class="p-2 text-dark" href="/">Home</a>
+      </nav>
+      <a class="btn btn-outline-primary" href="#">Sign up</a>
+    </div>
+<div class="container">
+   <div class="'row">
+       <div class="col-5 offset-1">
+           <h1>Weather in your city</h1>
+           <form action="" method="post">
+               {% csrf_token %}
+
+               {{ form.name }}
+               <input type="submit" name="send" value="Find out" class="mt-2 btn btn-danger">
+
+    </form>
+    </div >
+              <div class="col-5 offset-2">
+
+                  <h1 id="info">Information</h1>
+
+                  {% for info in all_info reversed%}
+
+
+                    <div class="alert alert-info">
+                        <div class="row">
+                            <div class="col-9">
+                       <b>City: </b> {{ info.city }} <br>
+                        <b>Temperature: </b> {{ info.temp }}<sup>o</sup><br>
+                        <img src="http://openweathermap.org/img/w/{{info.icon}}.png" alt="Weather Photo" class="img-thumbnail">
+
+                    </div>
+                        </div><br>
+           {% block delete %}
+            {% endblock %}
+{% endfor %}
+                            </div>
+
+            </div>
+    </div>
+</div>
+
+</body>
+</html>
